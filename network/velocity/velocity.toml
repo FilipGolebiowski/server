@@ -1,0 +1,58 @@
+# Velocity — proxy sieci El Cartel
+# Wersja konfigu może zostać zmigrowana przez Velocity przy starcie (wartości zostaną zachowane).
+config-version = "2.8"
+# Publiczny punkt wejścia. Na Hetznerze za TCPShieldem zostaje 0.0.0.0:25565.
+bind = "0.0.0.0:25565"
+motd = "&bEl Cartel &7- Network"
+show-max-players = 1000
+# Offline, bo wspieramy premium + cracked. Weryfikację premium dołoży core (M2).
+online-mode = false
+force-key-authentication = false
+prevent-client-proxy-connections = false
+# Modern forwarding (MAC) — sekret musi być IDENTYCZNY w forwarding.secret oraz w
+# paper-global.yml każdego backendu (proxies.velocity.secret).
+player-info-forwarding-mode = "modern"
+forwarding-secret-file = "forwarding.secret"
+announce-forge = false
+kick-existing-players = false
+ping-passthrough = "DISABLED"
+enable-player-address-logging = true
+forced-hosts = {}
+
+[servers]
+	# Tylko limbo statyczne (gateway auth). Hub i tryby rejestruja sie DYNAMICZNIE z Redisa (ShardWatcher).
+	# Backendy bindują się na 127.0.0.1 (dev na jednej maszynie).
+	# Na Hetznerze zmień na PRYWATNE IP w sieci vSwitch/Cloud Network.
+	limbo = "127.0.0.1:25567"
+	# Gdzie ląduje gracz po wejściu. Docelowo (po dołożeniu auth w core) -> "limbo".
+	try = ["limbo"]
+
+# Przykład routingu po domenie (opcjonalnie):
+# "survival.twojadomena.pl" = ["survival"]
+[advanced]
+	compression-threshold = 256
+	compression-level = -1
+	login-ratelimit = 3000
+	connection-timeout = 5000
+	read-timeout = 30000
+	# proxy-protocol: LOCALNIE = false. Na Hetznerze za TCPShieldem ustaw = true (HAProxy protocol).
+	proxy-protocol = false
+	tcp-fast-open = false
+	failover-on-unexpected-server-disconnect = true
+	announce-proxy-commands = true
+
+[query]
+	enabled = false
+
+[packet-limiter]
+	#Size of the moving time window in seconds used to calculate average rates.
+	#A larger window tolerates short bursts while still enforcing the configured limits over time.
+	interval = 7
+	#Maximum average number of packets per second a client may send. -1 disables this check.
+	packets-per-second = -1
+	#Maximum average number of compressed (on-wire) bytes per second a client may send. -1 disables this check.
+	bytes-per-second = -1
+	#Maximum average number of decompressed bytes per second a client may send.
+	#Protects against compression bomb attacks where small packets expand to excessive sizes after decompression.
+	#-1 disables this check.
+	decompressed-bytes-per-second = 5242880

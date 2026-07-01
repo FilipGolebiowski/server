@@ -1,0 +1,7 @@
+name: ModeOceanBlock
+version: 0.1.0-SNAPSHOT
+main: gg.elcartel.mode.oceanblock.OceanBlockPlugin
+api-version: '1.21'
+author: ElCartel
+description: Plugin trybu oceanblock
+depend: [CorePaper]

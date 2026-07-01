@@ -1,0 +1,82 @@
+scoreboard:
+  enabled: true
+  title: "&a&lSURVIVAL"
+  lines:
+    - "&7Witaj na serwerze Survival!"
+    - ""
+    - "&fRanga: &e%rank%"
+    - ""
+    - "&aGracze (Tutaj): &f%online_mode_survival%"
+    - "&bCaly serwer: &f%online_global%"
+    - ""
+    - "&7elcartel.gg"
+
+shop:
+  categories:
+    materialy:
+      name: "Materiały"
+      icon: "STONE"
+      slot: 11
+      items:
+        cobblestone:
+          material: "COBBLESTONE"
+          buy: 1.0
+          sell: 0.2
+        stone:
+          material: "STONE"
+          buy: 2.0
+          sell: 0.5
+        oak_log:
+          material: "OAK_LOG"
+          buy: 5.0
+          sell: 1.0
+        dirt:
+          material: "DIRT"
+          buy: 0.5
+          sell: 0.1
+    mineraly:
+      name: "Minerały"
+      icon: "DIAMOND"
+      slot: 13
+      items:
+        coal:
+          material: "COAL"
+          buy: 10.0
+          sell: 2.0
+        iron_ingot:
+          material: "IRON_INGOT"
+          buy: 50.0
+          sell: 10.0
+        gold_ingot:
+          material: "GOLD_INGOT"
+          buy: 100.0
+          sell: 20.0
+        diamond:
+          material: "DIAMOND"
+          buy: 500.0
+          sell: 100.0
+        emerald:
+          material: "EMERALD"
+          buy: 1000.0
+          sell: 250.0
+    rolnictwo:
+      name: "Rolnictwo"
+      icon: "WHEAT"
+      slot: 15
+      items:
+        wheat:
+          material: "WHEAT"
+          buy: 5.0
+          sell: 1.0
+        carrot:
+          material: "CARROT"
+          buy: 5.0
+          sell: 1.0
+        potato:
+          material: "POTATO"
+          buy: 5.0
+          sell: 1.0
+        beef:
+          material: "BEEF"
+          buy: 15.0
+          sell: 3.0

@@ -1,0 +1,38 @@
+# Konfiguracja Core Paper
+
+spawn:
+  enabled: true
+  world: "world"
+  x: 0.5
+  y: 65.0
+  z: 0.5
+  yaw: 0.0
+  pitch: 0.0
+
+security:
+  # Konfiguracja tarczy anty-spamowej i anty-flood
+  anti_spam:
+    chat_cooldown_ms: 1500 # Przerwa miedzy wiadomosciami na czacie (w milisekundach)
+    command_cooldown_ms: 1000 # Przerwa miedzy komendami (w milisekundach)
+    click_cooldown_ms: 350 # Zabezpieczenie przed auto-clickerami w GUI
+    
+  # Ochrona przed pakietami powodujacymi crashe (np. ksiazki, tabliczki)
+  anti_crash:
+    book_max_pages: 50 # Maksymalna ilosc stron w jednej ksiazce
+    book_max_page_length: 320 # Maksymalna liczba znakow na strone
+    sign_max_line_length: 100 # Maksymalna liczba znakow w jednej linijce na tabliczce
+    
+  # Parametry przeciwko lagom i lag-maszynom
+  anti_lag:
+    redstone_max_updates_per_chunk: 150 # Maksymalna liczba zmian stanu redstone w jednym chunku
+    redstone_window_ms: 5000 # Okno czasowe zliczania zmian redstone (np. 150 zmian w 5 sekund = blokada)
+    max_animals_per_chunk: 50 # Limit zwierzat (Entity Cramming) w jednym chunku
+    max_monsters_per_chunk: 50 # Limit potworow (Entity Cramming) w jednym chunku
+    
+  # Ochrona ekonomii (wykrywanie nienaturalnego przyrostu gotowki)
+  economy_guard:
+    enabled: true
+    interval_seconds: 10 # Co ile sekund sprawdzac portfele graczy
+    limit_1m: 100000.0 # Maksymalny dozwolony zarobek gracza w 1 minute
+    limit_5m: 1000000.0 # Maksymalny dozwolony zarobek gracza w 5 minut
+    log_to_console: true # Czy logowac alarmy rowniez do glownej konsoli serwera

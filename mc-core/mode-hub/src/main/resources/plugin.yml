@@ -1,0 +1,12 @@
+name: ModeHub
+version: 0.1.0-SNAPSHOT
+main: gg.elcartel.mode.hub.HubPlugin
+api-version: '1.21'
+author: ElCartel
+description: Plugin trybu HUB (lobby)
+depend: [CorePaper]
+
+commands:
+  setspawn:
+    description: Ustawia spawn huba
+    permission: elcartel.admin

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Cartel — Developer Panel</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="bg-blobs"></div>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">◆</span>
+        <div>
+          <strong>El Cartel</strong>
+          <small>Developer Panel</small>
+        </div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-tab="dashboard">Dashboard</button>
+        <button class="nav-item" data-tab="shards">Shardy</button>
+        <button class="nav-item" data-tab="sectors">Sektory</button>
+        <button class="nav-item" data-tab="servers">Serwery</button>
+        <button class="nav-item" data-tab="sessions">Sesje</button>
+        <button class="nav-item" data-tab="redis">Redis</button>
+        <button class="nav-item" data-tab="dev">Narzędzia Dev</button>
+        <button class="nav-item" data-tab="logs">Logi</button>
+      </nav>
+      <div class="sidebar-foot">
+        <label class="toggle">
+          <input type="checkbox" id="autoRefresh" checked>
+          Auto-odświeżanie (5s)
+        </label>
+        <label id="sidebarTokenLabel" class="token-field hidden">
+          Token panelu
+          <input type="password" id="sidebarToken" autocomplete="off" placeholder="ELCARTEL_PANEL_TOKEN">
+        </label>
+        <button class="btn ghost sm" id="btnRefresh">Odśwież teraz</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="topbar-actions">
+          <span class="pill" id="connRedis">Redis …</span>
+          <span class="pill" id="connMongo">Mongo …</span>
+          <span class="pill" id="connProxy">Proxy …</span>
+          <span class="timestamp" id="lastUpdate">—</span>
+        </div>
+      </header>
+
+      <!-- Dashboard -->
+      <section class="tab-panel active" id="tab-dashboard">
+        <div class="toolbar">
+          <button class="btn primary" id="btnStartNetwork">Uruchom całą sieć</button>
+          <button class="btn ghost" id="btnStopNetwork">Zatrzymaj sieć</button>
+          <label class="toggle inline">
+            <input type="checkbox" id="startInWindow">
+            Osobne okna konsoli (Windows)
+          </label>
+        </div>
+        <div class="cards" id="statCards"></div>
+        <div class="grid-2">
+          <div class="panel">
+            <h2>Dostępne Tryby</h2>
+            <div id="modesTable"></div>
+          </div>
+          <div class="panel">
+            <h2>Shardy na żywo</h2>
+            <div id="liveShardsList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Shards -->
+      <section class="tab-panel" id="tab-shards">
+        <div class="toolbar">
+          <button class="btn primary" id="btnNewShard">+ Nowy shard</button>
+          <button class="btn ghost" id="btnCleanupRedis">Wyczyść martwe wpisy Redis</button>
+        </div>
+        <p class="hint">Kliknij wybrany wiersz sharda, aby zobaczyć jego pełne szczegóły (port, zmienne ENV, status Redis, logi).</p>
+        <div class="panel">
+          <div id="shardsTable"></div>
+        </div>
+      </section>
+
+      <!-- Sectors -->
+      <section class="tab-panel" id="tab-sectors">
+        <div class="toolbar">
+          <span class="hint">Wizualna mapa sektorów Survival. Zobaczysz tu obciążenie poszczególnych "kwadratów" świata w czasie rzeczywistym.</span>
+        </div>
+        <div id="sectorSummary"></div>
+        <div class="panel">
+          <h2>Mapa sektorów <span style="color:var(--text-muted);font-weight:400;font-size:0.9rem">(survival)</span></h2>
+          <div id="sectorMap">Ładowanie…</div>
+        </div>
+      </section>
+
+      <!-- Servers -->
+      <section class="tab-panel" id="tab-servers">
+        <div class="toolbar">
+          <button class="btn primary" id="btnStartNetwork2">Uruchom całą sieć</button>
+          <button class="btn ghost" id="btnStopNetwork2">Zatrzymaj sieć</button>
+        </div>
+        <div class="panel">
+          <h2>Infrastruktura Lokalna</h2>
+          <div id="serversView"></div>
+        </div>
+      </section>
+
+      <!-- Sessions -->
+      <section class="tab-panel" id="tab-sessions">
+        <div class="panel">
+          <h2>Aktywne sesje graczy (Redis)</h2>
+          <p class="hint">Tabela pokazująca, przez jaki Proxy i do jakiego Shardu podłączeni są gracze: <code>session:&lt;uuid&gt;</code></p>
+          <div id="sessionsTable"></div>
+        </div>
+      </section>
+
+      <!-- Redis -->
+      <section class="tab-panel" id="tab-redis">
+        <div class="toolbar">
+          <button class="btn ghost" id="btnRefreshRedis">Odśwież widok</button>
+          <button class="btn danger sm" id="btnCleanupRedis2">Usuń martwe shardy z Redis</button>
+        </div>
+        <div class="grid-2">
+          <div class="panel"><h2>Rejestr shardów</h2><div id="redisOverview"></div></div>
+          <div class="panel"><h2>Przegląd kluczy</h2>
+            <div class="toolbar">
+              <select id="redisKeyPattern">
+                <option value="shard:*">shard:*</option>
+                <option value="session:*">session:*</option>
+                <option value="shards:mode:*">shards:mode:*</option>
+                <option value="lock:profile:*">lock:profile:*</option>
+                <option value="handoff:*">handoff:*</option>
+              </select>
+              <button class="btn ghost sm" id="btnScanKeys">Skanuj</button>
+            </div>
+            <div id="redisKeys"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Dev -->
+      <section class="tab-panel" id="tab-dev">
+        <div class="toolbar">
+          <button class="btn ghost" id="btnRunPreflight">Uruchom Preflight</button>
+          <button class="btn ghost" id="btnDeployCore">Uruchom deploy-core</button>
+          <button class="btn ghost" id="btnConfigureLp">Uruchom configure-luckperms</button>
+        </div>
+        <div class="grid-2">
+          <div class="panel"><h2>Preflight / porty sieciowe</h2><div id="devPreflight"></div></div>
+          <div class="panel"><h2>MongoDB status</h2><div id="devMongo"></div></div>
+        </div>
+        <div class="panel"><h2>Wynik ze skryptu</h2><pre class="log-view sm" id="devOutput">—</pre></div>
+      </section>
+
+      <!-- Logs -->
+      <section class="tab-panel" id="tab-logs">
+        <div class="toolbar">
+          <select id="logServer"></select>
+          <button class="btn ghost" id="btnLoadLog">Pobierz aktualny log</button>
+        </div>
+        <pre class="log-view" id="logView">Wybierz serwer z listy i kliknij „Pobierz aktualny log”.</pre>
+      </section>
+    </main>
+  </div>
+
+  <!-- Modal: new shard -->
+  <dialog id="modalNewShard">
+    <form method="dialog" id="formNewShard">
+      <h3>Nowy shard</h3>
+      <p class="hint">Uruchamia w tle lokalny skrypt <code>new-shard</code>.</p>
+      <label>Wybierz Tryb
+        <select name="mode" id="newShardMode" required></select>
+      </label>
+      <label>Ile sztuk?
+        <input type="number" name="count" value="1" min="1" max="20">
+      </label>
+      <label>Pamięć RAM (-Xmx)
+        <input type="text" name="xmx" value="2G">
+      </label>
+      <label id="tokenLabel" class="hidden">Token autoryzacyjny
+        <input type="password" name="token" id="newShardToken" autocomplete="off">
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" id="cancelNewShard">Anuluj</button>
+        <button type="submit" class="btn primary">Wygeneruj</button>
+      </div>
+      <pre class="modal-output hidden" id="newShardOutput"></pre>
+    </form>
+  </dialog>
+
+  <!-- Modal: shard detail -->
+  <dialog id="modalShardDetail" class="drawer">
+    <div class="drawer-head">
+      <h3 id="detailTitle">Szczegóły Shardu</h3>
+      <button type="button" class="btn ghost sm" id="closeShardDetail">Zamknij</button>
+    </div>
+    <div id="shardDetailBody" class="drawer-body">Ładowanie danych z backendu...</div>
+  </dialog>
+
+  <!-- Modal: delete shard -->
+  <dialog id="modalDeleteShard">
+    <form method="dialog" id="formDeleteShard">
+      <h3>Niszczenie Shardu</h3>
+      <p id="deleteShardText"></p>
+      <label class="checkbox">
+        <input type="checkbox" name="backup" id="deleteBackup">
+        Zrób paczkę zapasową świata (.tgz) przed skasowaniem
+      </label>
+      <label id="deleteTokenLabel" class="hidden">Token autoryzacyjny
+        <input type="password" id="deleteShardToken" autocomplete="off">
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" id="cancelDelete">Anuluj</button>
+        <button type="submit" class="btn danger">Zniszcz katalog</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast"></div>
+  <script src="/assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+# === El Cartel / network - .gitignore ===
+
+# sekrety i konfiguracja lokalna
+elcartel.properties
+*.secret
+
+# jary pobierane przez setup (nie do repo)
+*.jar
+
+# dane runtime serwerow (generowane przy starcie)
+**/logs/
+**/crash-reports/
+**/cache/
+servers/*/libraries/
+servers/*/versions/
+servers/*/world/
+servers/*/world_nether/
+servers/*/world_the_end/
+servers/*/usercache.json
+servers/*/banned-players.json
+servers/*/banned-ips.json
+*.log
+.logs/
+
+# panel web (Python venv)
+panel/.venv/
+panel/__pycache__/
+panel/.pids.json

@@ -1,0 +1,9 @@
+# OceanBlock - skyblock z wyspa stojaca na oceanie (zamiast wisiec w powietrzu).
+# Ten plik daje BAZOWY swiat: plaski ocean (woda do poziomu morza). Wlasciwa wyspa,
+# wyzwania i komendy (/is) daje plugin skyblock wrzucony do templates/oceanblock/plugins/
+# (polecany: BentoBox + addon OceanBlock, kompatybilne z Paper 1.21).
+difficulty=normal
+allow-nether=false
+level-type=minecraft:flat
+generator-settings={"layers":[{"block":"minecraft:bedrock","height":1},{"block":"minecraft:water","height":62}],"biome":"minecraft:ocean"}
+spawn-monsters=true

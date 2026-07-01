@@ -1,0 +1,10 @@
+# Hub (lobby) - gracze laduja tu po zalogowaniu. Plaski swiat, adventure, bez mobow.
+gamemode=adventure
+force-gamemode=true
+difficulty=peaceful
+level-type=minecraft:flat
+spawn-monsters=false
+allow-nether=false
+pvp=false
+view-distance=6
+simulation-distance=4

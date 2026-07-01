@@ -1,0 +1,10 @@
+# Survival - normalny swiat survival (mapa generowana per shard)
+difficulty=normal
+gamemode=survival
+pvp=true
+allow-nether=true
+spawn-monsters=true
+# SEKTORY: wszystkie shardy survival MUSZA miec ten sam seed, aby teren byl ciagly
+# przez granice sektorow (zmien wartosc, ale identyczna na kazdym shardzie survival).
+level-seed=4815162342
+# Mniejszy widok = mniej wczytywanych chunkow przy gestym sektorze (dostroj wg RAM/CPU).

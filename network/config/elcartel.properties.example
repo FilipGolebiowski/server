@@ -1,0 +1,11 @@
+# Szablon. Skopiuj do elcartel.properties i uzupelnij realnymi wartosciami.
+ELCARTEL_MONGO_URI=mongodb://localhost:27017/
+ELCARTEL_REDIS_URI=redis://default:HASLO@HOST:PORT
+ELCARTEL_MONGO_DB=elcartel
+# ELCARTEL_TOTP_KEY=
+ELCARTEL_LIMBO=limbo
+ELCARTEL_HUB=lobby
+
+# Bootstrap adminow kar PRZED instalacja LuckPerms (nicki i/lub UUID, po przecinku).
+# Po wdrozeniu LuckPerms mozesz wyczyscic - uprawnienia elcartel.* przejma grupy.
+ELCARTEL_ADMINS=

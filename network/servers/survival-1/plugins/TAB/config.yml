@@ -1,0 +1,123 @@
+header-footer:
+  enabled: true
+  designs:
+    default:
+      display-condition: '%world%!=disabledworld'
+      header:
+      - '&f&lANARCHIA.GG'
+      - '&aTwój ulubiony serwer Minecraft!'
+      - '&7%elcartel_global_online% osób na serwerze'
+      footer:
+      - '&7Znajdujesz się na trybie &aAnarchiaSMP &7(%elcartel_online_mode_survival%
+        osób)'
+      - '&7Discord: &fdc.anarchia.gg &8| &7Sklep: &fanarchia.gg/sklep'
+tablist-name-formatting:
+  enabled: true
+  disable-condition: '%world%=disabledworld'
+scoreboard-teams:
+  enabled: true
+  enable-collision: true
+  invisible-nametags: false
+  sorting-types:
+  - GROUPS:wlasciciel,admin,moderator,vip,gracz,default,root
+  - PLACEHOLDER_A_TO_Z:%player%
+  case-sensitive-sorting: true
+  can-see-friendly-invisibles: false
+  disable-condition: '%world%=disabledworld'
+layout:
+  layouts:
+    default:
+      fixed-slot-update-interval: 1000
+      columns:
+        1:
+          empty-slot-ping-value: 0
+          slots:
+          - slot:1|text:&e&lINFORMACJE O TOBIE
+          - 'slot:2|text:&7Nick: &f%player_name%'
+          - 'slot:3|text:&7Zabojstw: &f%statistic_player_kills%'
+          - 'slot:4|text:&7Smierci: &f%statistic_deaths%'
+          - 'slot:5|text:&7KDR: &f0.00'
+          - 'slot:6|text:&7Stan konta: &f%vault_eco_balance_formatted%$'
+          - 'slot:7|text:&7Ping: &f%ping%'
+          - 'slot:8|text:'
+          - slot:9|text:&e&lINFORMACJE O SEKTORZE
+          - 'slot:10|text:&7Godzina: &f%server_time_HH:mm:ss%'
+          - 'slot:11|text:&7Graczy: &f%elcartel_online_mode_survival%'
+        2:
+          empty-slot-ping-value: 0
+          slots:
+          - slot:21|text:&e&lNAJLEPSI GRACZE
+          - slot:22|text:&8#1. &7(Wkrotce) &8» &f-
+          - slot:23|text:&8#2. &7(Wkrotce) &8» &f-
+          - slot:24|text:&8#3. &7(Wkrotce) &8» &f-
+        3:
+          empty-slot-ping-value: 0
+          slots:
+          - slot:41|text:&e&lNAJBOGATSI GRACZE
+          - slot:42|text:&8#1. &7(Wkrotce) &8» &f-
+          - slot:43|text:&8#2. &7(Wkrotce) &8» &f-
+          - slot:44|text:&8#3. &7(Wkrotce) &8» &f-
+        4:
+          empty-slot-ping-value: 0
+          slots:
+          - slot:61|text:&e&lINFORMACJE
+          - slot:62|text:&7Obserwuj nasze social
+          - slot:63|text:&7media, aby byc na
+          - slot:64|text:&7biezaco!
+          - 'slot:65|text:'
+          - 'slot:66|text:&a&lDISCORD: &fdc.anarchia.gg'
+          - 'slot:67|text:&a&lSKLEP: &fanarchia.gg'
+          - 'slot:68|text:'
+          - slot:69|text:&e&lDODATKOWE INFORMACJE
+          - slot:70|text:&7/ustawienia
+          - slot:71|text:&7/zestawy
+          - slot:72|text:&7/zadania
+          - slot:73|text:&7/pomoc
+          - slot:74|text:&7/sklep
+          - slot:75|text:&7/topki
+      display-condition: ''
+  enabled: false
+prevent-spectator-effect:
+  enabled: false
+debug: false
+use-online-uuid-in-tablist: true
+permission-refresh-interval: 1000
+compensate-for-packetevents-bug: false
+assign-groups-by-permissions: false
+primary-group-finding-list:
+- Owner
+- Admin
+- Helper
+- default
+belowname-objective:
+  fancy-value-default: NPC
+  fancy-value: '&c%health%'
+  enabled: false
+placeholders:
+  register-tab-expansion: false
+  locale: en-US
+global-playerlist:
+  update-latency: false
+  enabled: false
+playerlist-objective:
+  title: TAB
+  value: ''
+  render-type: INTEGER
+  enabled: true
+config-version: 6
+components:
+  minimessage-support: true
+  disable-shadow-for-heads: true
+proxy-support:
+  channel-name-suffix: custom
+  enabled: true
+bossbar:
+  enabled: false
+mysql:
+  enabled: false
+per-world-playerlist:
+  enabled: false
+ping-spoof:
+  enabled: false
+scoreboard:
+  enabled: false

@@ -1,0 +1,49 @@
+name: CorePaper
+version: 0.1.0-SNAPSHOT
+main: gg.elcartel.paper.CorePaperPlugin
+api-version: '1.21'
+author: ElCartel
+description: El Cartel core (Paper) - auth-gate (limbo) + shard (heartbeat, handoff, ekonomia)
+softdepend: [LuckPerms, PlaceholderAPI]
+commands:
+  register:
+    usage: /register <haslo> <haslo>
+    description: Rejestracja konta (cracked)
+  login:
+    usage: /login <haslo>
+    description: Logowanie
+  otp:
+    usage: /otp <kod>
+    aliases: [2fa]
+    description: Weryfikacja 2FA
+  balance:
+    usage: /balance [gracz]
+    aliases: [bal, kasa]
+    description: Saldo (per-tryb)
+  pay:
+    usage: /pay <gracz> <kwota>
+    description: Przelej srodki (per-tryb)
+  eco:
+    usage: /eco <give|take|set> <gracz> <kwota>
+    description: Administracja ekonomii
+    permission: elcartel.eco.admin
+  ac-punish:
+    description: "Most do nakladania globalnych kar z lokalnego konsolowego wywolania AntiCheata"
+    permission: "elcartel.admin"
+  ch:
+    usage: /ch
+    aliases: [sektory]
+    description: Wybor kanalu/sektora (GUI)
+  spawn:
+    usage: /spawn
+    description: Powrot na spawn sektora
+
+permissions:
+  elcartel.eco.admin:
+    description: Zarzadzanie ekonomia
+    default: op
+  elcartel.admin:
+    description: Glowne uprawnienie dla administratorow (w tym Economy Guard)
+    default: op
+  elcartel.bypass.spam:
+    description: Pomijanie zabezpieczen anti-spam i anti-crash

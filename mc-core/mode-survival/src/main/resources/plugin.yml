@@ -1,0 +1,12 @@
+name: ModeSurvival
+version: 0.1.0-SNAPSHOT
+main: gg.elcartel.mode.survival.SurvivalPlugin
+api-version: '1.21'
+author: ElCartel
+description: Modul trybu Survival. Zalezy od CorePaper.
+depend: [CorePaper]
+softdepend: [Vault]
+commands:
+  sklep:
+    description: Otwiera menu sklepu
+    usage: /sklep

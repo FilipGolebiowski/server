@@ -1,0 +1,26 @@
+# Konfiguracja trybu Hub
+join:
+  # Wiadomość na chacie przy wejściu (możesz używać kolorów & lub formatowania)
+  message: "&aWitaj w hubie El Cartel! Wpisz &e/play <tryb>&a, by zagrać."
+  
+  # Duży tekst na środku ekranu (zostaw puste "" aby wyłączyć)
+  title: "&6&lEL CARTEL"
+  
+  # Mniejszy tekst pod tytułem na środku ekranu
+  subtitle: "&eWitaj na serwerze!"
+  
+  # Dźwięk odtwarzany przy połączeniu (wartość z Enum Sound w Bukkit). "none" aby wyłączyć.
+  sound: "ENTITY_PLAYER_LEVELUP"
+
+scoreboard:
+  enabled: true
+  title: "&f&lELCARTEL.GG"
+  lines:
+    - "&7Twoje rangi:"
+    - "&8» &7%rank% &8| &a&lelcartel.gg/shop"
+    - ""
+    - "&e&lBoxPVP: &f%online_mode_boxpvp%"
+    - "&b&lOceanBlock: &f%online_mode_oceanblock%"
+    - "&a&lSurvival: &f%online_mode_survival%"
+    - ""
+    - "&fPoczekalnia: &e#%shard_id% &8(%online_mode_hub% os.)"

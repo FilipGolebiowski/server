@@ -1,0 +1,12 @@
+scoreboard:
+  enabled: true
+  title: "&b&lOCEANBLOCK"
+  lines:
+    - "&7Witaj na serwerze OceanBlock!"
+    - ""
+    - "&fRanga: &e%rank%"
+    - ""
+    - "&bGracze (Tutaj): &f%online_mode_oceanblock%"
+    - "&aCaly serwer: &f%online_global%"
+    - ""
+    - "&7elcartel.gg"

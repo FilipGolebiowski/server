@@ -1,0 +1,2 @@
+# Akceptacja EULA Minecraft: https://aka.ms/MinecraftEULA
+eula=true
