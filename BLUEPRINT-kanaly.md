@@ -201,7 +201,7 @@ Opcje realizacji:
 
 **Zmiana kanału a multi-proxy:** ponieważ **wszystkie proxy widzą wszystkie shardy** (sieć prywatna), zmiana kanału to zwykły server-switch na *tym samym* proxy — handoff danych (sekcje 5–6) działa identycznie niezależnie od proxy, bo dane są w wspólnym Mongo/Redisie.
 
-**Transfer packet + Cookies (1.20.5+, są w 1.21.8):** służą do przenoszenia klienta **między proxy** (balansowanie/failover proxy, anycast), nie do przenoszenia ekwipunku. Cookie ma limit **5 KiB** — za mało na profil; używamy go wyłącznie na **podpisany token sesji** (żeby docelowe proxy zaufało sesji bez tarcia). Pełny profil zawsze przez bazę. Token cookie **musi być podpisany** (HMAC) i weryfikowany po stronie docelowej — inaczej podatność na podszycie.
+**Transfer packet + Cookies (1.20.5+, są w 1.21.11):** służą do przenoszenia klienta **między proxy** (balansowanie/failover proxy, anycast), nie do przenoszenia ekwipunku. Cookie ma limit **5 KiB** — za mało na profil; używamy go wyłącznie na **podpisany token sesji** (żeby docelowe proxy zaufało sesji bez tarcia). Pełny profil zawsze przez bazę. Token cookie **musi być podpisany** (HMAC) i weryfikowany po stronie docelowej — inaczej podatność na podszycie.
 
 ---
 

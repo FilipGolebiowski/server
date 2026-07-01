@@ -1,5 +1,5 @@
 // Root build - wspolna konfiguracja dla wszystkich modulow.
-// Zalozenia: Java 21, Paper 1.21.8, Velocity. Pakiet bazowy: gg.elcartel
+// Zalozenia: Java 21, Paper 1.21.11, Velocity. Pakiet bazowy: gg.elcartel
 allprojects {
     group = "gg.elcartel"
     version = "0.1.0-SNAPSHOT"

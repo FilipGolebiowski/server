@@ -1,6 +1,6 @@
 # Blueprint sieci Minecraft 1000+ graczy
 
-**Stack:** Paper 1.21.8 (backendy) · Velocity (proxy) · Java 21 + Gradle (core) · Hetzner (hosting hybrydowy) · Cloudflare (DNS) · TCPShield (anty-DDoS)
+**Stack:** Paper 1.21.11 (backendy) · Velocity (proxy) · Java 21 + Gradle (core) · Hetzner (hosting hybrydowy) · Cloudflare (DNS) · TCPShield (anty-DDoS)
 **Tryb auth:** premium + cracked (offline) · **Typ sieci:** mieszana (hub + tryby)
 **Wersja dokumentu:** 1.0 · Data: 2026-06-01
 
@@ -13,7 +13,7 @@
 | Obszar | Decyzja | Konsekwencja |
 |---|---|---|
 | Skala | 1000+ graczy jednocześnie | Sieć wielu instancji, nie pojedynczy serwer |
-| Silnik | Paper 1.21.8 | Java 21, flagi Aikara |
+| Silnik | Paper 1.21.11 | Java 21, flagi Aikara |
 | Proxy | Velocity (modern forwarding) | MAC chroni przed podszywaniem pod backend |
 | Core | Java 21 + Gradle, multi-module | Minimum gotowych pluginów, pełna kontrola |
 | Hosting | Hybryda Hetzner: dedyk AX + Cloud CCX | Mocny single-core pod grę, elastyczna reszta |
@@ -43,7 +43,7 @@
         └─────────────┬─────────────┘
                       │  sieć PRYWATNA (vSwitch + Cloud Network)
    ┌──────────┬───────┴───────┬────────────┬───────────────┐
-   │  LIMBO   │   HUB ×2 (HA)  │  TRYB A ×N │  TRYB B ×N ... │  Paper 1.21.8 (dedyk AX)
+   │  LIMBO   │   HUB ×2 (HA)  │  TRYB A ×N │  TRYB B ×N ... │  Paper 1.21.11 (dedyk AX)
    │ (auth/   │               │ (shardy)   │               │
    │ anti-bot)│               │            │               │
    └──────────┴───────────────┴────────────┴───────────────┘
@@ -186,7 +186,7 @@ Sklep to ruch HTTP, więc korzysta z pełnej ochrony warstwy web Cloudflare — 
 
 ### 5.1 Wersje i Java
 
-- Minecraft **1.21.8** → **Java 21** (baseline 1.21.x). Uruchamiamy na aktualnym LTS; zweryfikuj wymaganie konkretnego builda Paper przed wdrożeniem (pobieranie z PaperMC „Fill" API).
+- Minecraft **1.21.11** → **Java 21** (baseline 1.21.x). Uruchamiamy na aktualnym LTS; zweryfikuj wymaganie konkretnego builda Paper przed wdrożeniem (pobieranie z PaperMC „Fill" API).
 - Te same wersje Javy i Paper na wszystkich backendach.
 
 ### 5.2 Velocity (`velocity.toml`)
@@ -206,7 +206,7 @@ proxy-protocol = true                     # odbiór HAProxy/PROXY protocol od TC
 - `forwarding.secret` — długi losowy sekret; **ten sam** wpisujemy na backendach.
 - `proxy-protocol = true` sprawia, że bezpośrednie połączenia (bez nagłówka PROXY) odpadają — wzmacnia wymuszenie ruchu przez TCPShield.
 
-### 5.3 Paper 1.21.8
+### 5.3 Paper 1.21.11
 
 `config/paper-global.yml` (na każdym backendzie):
 
@@ -239,7 +239,7 @@ java -Xms12G -Xmx12G \
  -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 \
  -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 \
  -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true \
- -jar paper-1.21.8.jar --nogui
+ -jar paper-1.21.11.jar --nogui
 ```
 
 Trzymaj `Xms == Xmx`. Dla heapu ≤12 GB użyj wariantu bazowego (bez podbitych `G1NewSizePercent`).
@@ -348,7 +348,7 @@ Zdecydowano się na użycie LuckPerms (zainstalowane zarówno na instancjach Pap
 
 > Status na 2026-06-22. Projekty nowych etapów w dokumentach towarzyszących: [BLUEPRINT-auth.md](BLUEPRINT-auth.md) (M2) oraz [BLUEPRINT-kanaly.md](BLUEPRINT-kanaly.md) (M3 + rozszerzenie skali do setek tysięcy graczy: silnik Paper, cap 150–200/shard).
 
-- **M0 ✅ zrobione** — szkielet Gradle + buildujące się pluginy „hello" na Paper 1.21.8 i Velocity (`mc-core/`).
+- **M0 ✅ zrobione** — szkielet Gradle + buildujące się pluginy „hello" na Paper 1.21.11 i Velocity (`mc-core/`).
 - **M1 ✅ zrobione** — `core-data` (MongoDB + Redis): profil gracza, lock z lease, sygnał handoffu, rejestr sesji, pub/sub.
 - **M2 ✅ zrobione** — auth: gateway na proxy (premium → online-mode, anti-bot per IP) + flow na limbo (`/register` `/login` `/otp`, Argon2id, 2FA TOTP, lockout). Szczegóły: `BLUEPRINT-auth.md`.
 - **M3 ✅ zrobione** — rejestr/heartbeat shardów, routing + kanały (`/play`, `/channels`, autoscaling serwerów), handoff pełnego profilu (lock-lease + wersja, serializacja NBT). Szczegóły: `BLUEPRINT-kanaly.md`.

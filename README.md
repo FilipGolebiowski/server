@@ -1,6 +1,6 @@
 # El Cartel — sieć Minecraft (dokumentacja projektu)
 
-Sieć Minecraft dużej skali: **Paper 1.21.8** (backendy) + **Velocity** (proxy), premium + cracked, własny rdzeń w Javie 21. Wiele trybów (każdy shardowany), pełny handoff gracza między shardami, docelowo multi-proxy i setki tysięcy graczy.
+Sieć Minecraft dużej skali: **Paper 1.21.11** (backendy) + **Velocity** (proxy), premium + cracked, własny rdzeń w Javie 21. Wiele trybów (każdy shardowany), pełny handoff gracza między shardami, docelowo multi-proxy i setki tysięcy graczy.
 
 ## Status
 

@@ -1,5 +1,5 @@
 # Pobiera jary przez PaperMC Fill API (v3 - fill.papermc.io). Windows PowerShell.
-#   - Paper 1.21.8 (najnowszy STABLE build) -> do KAZDEGO folderu w servers\
+#   - Paper 1.21.11 (najnowszy STABLE build) -> do KAZDEGO folderu w servers\
 #     (lobby, limbo, survival oraz dowolne dodane tryby)
 #   - najnowszy Velocity -> velocity\velocity.jar
 #
@@ -10,7 +10,7 @@ $ProgressPreference = "SilentlyContinue"   # bez tego Invoke-WebRequest w PS 5.1
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12  # PS 5.1 domyslnie nie wlacza TLS 1.2
 Set-Location $PSScriptRoot
 
-$PaperVer = "1.21.8"
+$PaperVer = "1.21.11"
 # Mozesz podmienic kontakt ponizej na wlasny (URL/email) - byle nie generyczny.
 $UA  = "elcartelgg-network-setup/1.0 (+https://elcartel.gg)"
 $API = "https://fill.papermc.io/v3"

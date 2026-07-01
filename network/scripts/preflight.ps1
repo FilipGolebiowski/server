@@ -19,7 +19,7 @@ if ($jv) {
   if ($line -match '"([0-9]+)(\.([0-9]+))?') {
     $maj = [int]$Matches[1]; if ($maj -eq 1) { $maj = [int]$Matches[3] }
     if ($maj -ge 21) { Ok "Java $maj (>=21)" }
-    else { Fail "Java $maj - wymagane 21+ (Paper 1.21.8 / Velocity). Zainstaluj JDK 21 (Temurin)" }
+    else { Fail "Java $maj - wymagane 21+ (Paper 1.21.11 / Velocity). Zainstaluj JDK 21 (Temurin)" }
   } else { Warn "nie rozpoznano wersji Javy z: $line" }
 } else { Fail "brak Javy w PATH - zainstaluj JDK 21 (Temurin)" }
 

@@ -14,7 +14,7 @@ Gdy Velocity działa: `python mc_ping.py` → powinno wypisać MOTD `El Cartel -
 
 - Każdy backend kończy log `Done (X.XXXs)!` bez błędów.
 - Velocity: `Listening on /0.0.0.0:25565`.
-- Klient 1.21.8 na `localhost` → **limbo** (auth) → po zalogowaniu **hub**. Dowód, że forwarding działa end-to-end.
+- Klient 1.21.11 na `localhost` → **limbo** (auth) → po zalogowaniu **hub**. Dowód, że forwarding działa end-to-end.
 
 ## Troubleshooting
 

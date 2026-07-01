@@ -28,7 +28,7 @@ network/
 
 Windows: `powershell -ExecutionPolicy Bypass -File <skrypt>` albo `.\<skrypt>` (patrz START.md). Linux: `bash <skrypt>`.
 
-- **`setup`** — pobiera Paper 1.21.8 + Velocity (jary do `servers/*` i `velocity/`).
+- **`setup`** — pobiera Paper 1.21.11 + Velocity (jary do `servers/*` i `velocity/`).
 - **`preflight`** — Java 21, RAM, wolne porty, zgodność forwarding-secretu.
 - **`new-shard -Mode <tryb> -Count N`** — tworzy shardy trybu (wolny port z pasma, ENV, `core-paper.jar`). Szczegóły: `templates/README.md`.
 - **`save-template <tryb>-<N>`** — kopiuje konfigi pluginów z działającego sharda z powrotem do `templates/<tryb>/` (nowe shardy dostaną te same ustawienia). Szczegóły: `templates/README.md`.

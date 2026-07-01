@@ -17,7 +17,7 @@ if command -v java >/dev/null 2>&1; then
   MAJ=${RAW%%.*}
   if [ "$MAJ" = "1" ]; then MAJ=$(echo "$RAW" | cut -d. -f2); fi
   if [ "${MAJ:-0}" -ge 21 ] 2>/dev/null; then ok "Java $MAJ (>=21)"
-  else fail "Java $MAJ - wymagane 21+ (Paper 1.21.8 / Velocity). Zainstaluj JDK 21 (Temurin)"; fi
+  else fail "Java $MAJ - wymagane 21+ (Paper 1.21.11 / Velocity). Zainstaluj JDK 21 (Temurin)"; fi
 else
   fail "brak Javy w PATH - zainstaluj JDK 21 (Temurin)"
 fi
