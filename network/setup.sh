@@ -19,10 +19,10 @@ API="https://fill.papermc.io/v3"
 # Preferuje kanal STABLE i najwyzszy numer builda; klucz pliku: server:default
 # (z fallbackiem na pierwszy dostepny download).
 pick_url() {
-  python3 - <<'PY'
+  python3 - "$1" <<'PY'
 import sys, json
 try:
-    d = json.load(sys.stdin)
+    d = json.load(open(sys.argv[1]))
 except Exception:
     print(""); sys.exit(0)
 builds = d if isinstance(d, list) else d.get("builds", [])
@@ -47,7 +47,8 @@ verify_jar() {
 }
 
 echo "==> Paper ${PAPER_VER}: pobieranie listy buildow (Fill API v3)..."
-PURL=$(curl -fsSL -H "User-Agent: ${UA}" "${API}/projects/paper/versions/${PAPER_VER}/builds" | pick_url || true)
+curl -fsSL -H "User-Agent: ${UA}" "${API}/projects/paper/versions/${PAPER_VER}/builds" -o /tmp/bp.json
+PURL=$(pick_url /tmp/bp.json || true)
 if [ -z "${PURL}" ]; then
   echo "BLAD: nie znaleziono STABLE builda Paper dla ${PAPER_VER}."
   echo "      Sprawdz, czy wersja jest poprawna i czy masz dostep do fill.papermc.io."
@@ -90,7 +91,8 @@ def vkey(s):
 print(sorted(allv, key=vkey)[-1] if allv else '')
 " || true)
 if [ -z "${VVER}" ]; then echo "BLAD: nie udalo sie ustalic wersji Velocity."; exit 1; fi
-VURL=$(curl -fsSL -H "User-Agent: ${UA}" "${API}/projects/velocity/versions/${VVER}/builds" | pick_url || true)
+curl -fsSL -H "User-Agent: ${UA}" "${API}/projects/velocity/versions/${VVER}/builds" -o /tmp/bv.json
+VURL=$(pick_url /tmp/bv.json || true)
 if [ -z "${VURL}" ]; then echo "BLAD: brak builda Velocity dla ${VVER}."; exit 1; fi
 echo "    Velocity ${VVER} URL: ${VURL}"
 curl -fSL -H "User-Agent: ${UA}" -o velocity/velocity.jar "${VURL}"
